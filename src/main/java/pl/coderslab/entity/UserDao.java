@@ -87,6 +87,18 @@ public class UserDao {
         }
     }
 
+    public boolean deleteWithConfirmation(int userId){
+        try(Connection conn = DbUtil.getConnection()){
+            PreparedStatement statement = conn.prepareStatement(DELETE_USER_QUERY);
+            statement.setInt(1,userId);
+            statement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     private User[] addToArray(User u, User[] users){
         User[] tmpUsersArray = Arrays.copyOf(users, users.length + 1);
         tmpUsersArray[users.length] = u;

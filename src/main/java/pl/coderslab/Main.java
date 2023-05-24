@@ -11,12 +11,37 @@ public class Main {
 
 
     public static void main(String[] args) {
-        UserDao userDao = new UserDao();
-        User user = new User("jan","jan.nowak@gmail.com","hasło");
-        User[] users = userDao.findAll();
-        for (User user1 : users) {
-            System.out.println(user1);
+        boolean isWhileRunning = true;
+        while (isWhileRunning){
+            Menu.showMenu();
+            switch (Menu.command){
+                case "add":
+                    Menu.add();
+                    break;
+                case "read":
+                    Menu.read();
+                    break;
+                case "update":
+                    Menu.update();
+                    break;
+                case "list":
+                    Menu.list();
+                    break;
+                case "delete":
+                    Menu.delete();
+                    break;
+                case "exit":
+                    isWhileRunning = false;
+                    break;
+                default:
+                    System.out.println("Wrong command!");
+                    Menu.line();
+                    break;
+
+
+            }
         }
+
 
 
 
